@@ -33,6 +33,10 @@ class ConnectedComponents:
     def are_connected(self, v, w):
         return (self._components[v] == self._components[w])
 
+    @property
+    def num_components(self):
+        return len(set(self._components))
+
 
 class TestSingleComponent:
     @pytest.fixture
@@ -40,6 +44,9 @@ class TestSingleComponent:
         graph = Graph(2)
         graph.add_edge(0, 1)
         return ConnectedComponents(graph)
+
+    def test_has_one_component(self, components):
+        assert components.num_components == 1
 
     def test_component_id(self, components):
         assert components.component_id(0) == 0
@@ -57,6 +64,9 @@ class TestThreeComponents:
         graph.add_edge(0, 2)
         graph.add_edge(3, 4)
         return ConnectedComponents(graph)
+
+    def test_has_three_components(self, components):
+        assert components.num_components == 3
 
     @pytest.mark.parametrize(('vertex', 'id'), [
         (0, 0),
