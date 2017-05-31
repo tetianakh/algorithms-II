@@ -16,6 +16,9 @@ class Graph:
     def num_vertices(self):
         return self._V
 
+    def __iter__(self):
+        for v in range(self._V):
+            yield v
 
 def test_added_edge_is_adjacent():
     graph = Graph(2)
