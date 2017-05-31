@@ -12,6 +12,10 @@ class Graph:
     def adjacent(self, v):
         return iter(self._adj[v])
 
+    @property
+    def num_vertices(self):
+        return self._V
+
 
 def test_added_edge_is_adjacent():
     graph = Graph(2)
